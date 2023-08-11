@@ -2,7 +2,7 @@
   "name": "compile-run",
   "displayName": "Compile & Run",
   "description": "Compile and run the cpp file with a single command while taking input from a file and writing output to another file. best for competitive programming.",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -16,12 +16,27 @@
   "contributes": {
     "commands": [
       {
+        "command": "compile-run.activate",
+        "title": "Compile & Run: Activate"
+      },
+      {
         "command": "compile-run.compileRun",
-        "title": "Compile & Run"
+        "title": "Compile & Run: Start"
       }
-    ]
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "editorLangId == cpp",
+          "command": "compile-run.compileRun",
+          "group": "navigation"
+        }
+      ]
+    }
   },
   "icon": "images/icon.png",
+  "publisher": "AbhishekKumarIITG",
+  "license": "MIT", 
   
   "scripts": {
     "vscode:prepublish": "yarn run compile",

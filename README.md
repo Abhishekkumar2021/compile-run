@@ -1,6 +1,6 @@
 # README
 
-Compile and run the cpp file with a single command while taking input from a file and writing output to another file. best for competitive programming.
+Compile and run the cpp file in a competitive programming style. `Take input from a file and write output to a file`
 
 ## Features
 
@@ -19,7 +19,7 @@ Compile and run the cpp file with a single command while taking input from a fil
 
 ### At first to activate the extension you have to follow the following steps
 - Open the command palette (Ctrl+Shift+P)
-- Select `Compile & Run`
+- Select `Compile & Run: Activate`
 
 > Note: You have to do this only once, after that you can used the shortcut key present in your status bar to compile and run the file.
 
@@ -32,5 +32,10 @@ Current this extension is only for c++ files. I will add support for other langu
 ### 1.0.0
 
 Initial release of Compile & Run
+
+### 1.0.1
+
+- Added a seperate command to activate the extension
+- Added a menu item to start the compile and run process
 
 **Enjoy!**

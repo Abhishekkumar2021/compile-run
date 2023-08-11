@@ -25,6 +25,11 @@ export function activate(context: vscode.ExtensionContext) {
 	// Update status bar item based on events
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(() => updateStatusBarItem(statusBarItem)));
 
+	// Activating function
+	const activate = vscode.commands.registerCommand('compile-run.activate', () => {
+		vscode.window.showInformationMessage('Compile & Run is active');
+	});
+
 	// Add a command to compile and run
 	const compileRun = vscode.commands.registerCommand('compile-run.compileRun', async () => {
 		const editor = vscode.window.activeTextEditor;
@@ -65,7 +70,8 @@ export function activate(context: vscode.ExtensionContext) {
 			vscode.window.showErrorMessage('No file is open');
 		}
 	});
-				
+	
+	context.subscriptions.push(activate);
 	context.subscriptions.push(compileRun);
 }
 
