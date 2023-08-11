@@ -1,7 +1,7 @@
 {
   "name": "compile-run",
   "displayName": "Compile & Run",
-  "description": "Compile and run the cpp file with a single command while taking input from a file and writing output to another file. best for competitive programming.",
+  "description": "Compile and run the cpp file with a single command with taking input from input.txt and writing output to output.txt file. Best for competitive programming.",
   "version": "0.0.2",
   "engines": {
     "vscode": "^1.81.0"
