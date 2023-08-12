@@ -38,4 +38,9 @@ Initial release of Compile & Run
 - Added a seperate command to activate the extension
 - Added a menu item to start the compile and run process
 
+### 1.0.2
+
+-- Replaced use of `&&` operator with the `if($?)` statement.
+-- Automatically opening the output.txt on succesfull completion.
+
 **Enjoy!**

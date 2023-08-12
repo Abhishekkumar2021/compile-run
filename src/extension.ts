@@ -34,46 +34,50 @@ export function activate(context: vscode.ExtensionContext) {
 	const compileRun = vscode.commands.registerCommand('compile-run.compileRun', async () => {
 		const editor = vscode.window.activeTextEditor;
 		if (editor) {
-			const terminal = vscode.window.createTerminal('Compile & Run');
+			const terminal = vscode.window.activeTerminal || vscode.window.createTerminal("Compile & Run");
 			const document = editor.document;
 			const filePath = document.fileName;
 			const directory = filePath.substring(0, filePath.lastIndexOf('\\'));
 			const extension = filePath.split('.').pop();
 			const fileName = filePath.split('\\').pop()?.split('.')[0];
 
-			if(extension !== 'cpp') {
+			if (extension !== 'cpp') {
 				vscode.window.showErrorMessage('File is not a c++ file');
 				return;
 			}
-			
+
 			// First check if we are on linux or windows
 			if (process.platform === 'win32') {
 				// Windows
 				vscode.window.showInformationMessage('Please wait while we compile and run your code');
+
 				// Check if the file is saved or not
 				await document.save();
 				// Go to that directory and compile and run
-				const completeCommand = `cd ${directory} && g++ ${fileName}.cpp -o ${fileName}.exe 2> output.txt && Get-Content input.txt | .\\${fileName}.exe > output.txt && Remove-Item ${fileName}.exe`;
-				terminal.sendText(completeCommand);		
+				const completeCommand = `cd ${directory}; if($?) { g++ ${fileName}.cpp -o ${fileName}.exe } ; if($?) { Get-Content input.txt | .\\${fileName}.exe > output.txt }; if($?) { rm ${fileName}.exe }; if($?) { code output.txt }`;
+				terminal.sendText(completeCommand);
 
-			}else {
+				// Check if output.txt is already active or not
+				const outputDocument = vscode.workspace.textDocuments.find((document) => document.fileName === `${directory}\\output.txt`);
+				
+			} else {
 				// Linux
 				vscode.window.showInformationMessage('Please wait while we compile and run your code');
 				// Check if the file is saved or not
 				await document.save();
 				// Go to that directory and compile and run
-				const completeCommand = `cd ${directory} && g++ ${fileName}.cpp -o ${fileName} 2> output.txt && cat ./${fileName} < input.txt > output.txt  && rm ${fileName}`;
+				const completeCommand = `cd ${directory} && g++ ${fileName}.cpp -o ${fileName} && ./${fileName} < input.txt > output.txt  && rm ${fileName} && code output.txt`;
 				terminal.sendText(completeCommand);
 			}
-			
+
 		} else {
 			vscode.window.showErrorMessage('No file is open');
 		}
 	});
-	
+
 	context.subscriptions.push(activate);
 	context.subscriptions.push(compileRun);
 }
 
 // This method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() { }

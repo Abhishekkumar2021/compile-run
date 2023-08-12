@@ -2,7 +2,7 @@
   "name": "compile-run",
   "displayName": "Compile & Run",
   "description": "Compile and run the cpp file with a single command with taking input from input.txt and writing output to output.txt file. Best for competitive programming.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "engines": {
     "vscode": "^1.81.0"
   },
