@@ -25,11 +25,6 @@ export function activate(context: vscode.ExtensionContext) {
 	// Update status bar item based on events
 	context.subscriptions.push(vscode.window.onDidChangeActiveTextEditor(() => updateStatusBarItem(statusBarItem)));
 
-	// Activating function
-	const activate = vscode.commands.registerCommand('compile-run.activate', () => {
-		vscode.window.showInformationMessage('Compile & Run is active');
-	});
-
 	// Add a command to compile and run
 	const compileRun = vscode.commands.registerCommand('compile-run.compileRun', async () => {
 		const editor = vscode.window.activeTextEditor;
@@ -48,9 +43,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 			// First check if we are on linux or windows
 			if (process.platform === 'win32') {
-				// Windows
-				vscode.window.showInformationMessage('Please wait while we compile and run your code');
-
 				// Check if the file is saved or not
 				await document.save();
 				// Go to that directory and compile and run
@@ -61,8 +53,6 @@ export function activate(context: vscode.ExtensionContext) {
 				const outputDocument = vscode.workspace.textDocuments.find((document) => document.fileName === `${directory}\\output.txt`);
 				
 			} else {
-				// Linux
-				vscode.window.showInformationMessage('Please wait while we compile and run your code');
 				// Check if the file is saved or not
 				await document.save();
 				// Go to that directory and compile and run
@@ -75,7 +65,6 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 	});
 
-	context.subscriptions.push(activate);
 	context.subscriptions.push(compileRun);
 }
 

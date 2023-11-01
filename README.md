@@ -29,18 +29,22 @@ Current this extension is only for c++ files. I will add support for other langu
 
 ## Release Notes
 
-### 1.0.0
+### 0.0.1
 
 Initial release of Compile & Run
 
-### 1.0.1
+### 0.0.2
 
 - Added a seperate command to activate the extension
 - Added a menu item to start the compile and run process
 
-### 1.0.2
+### 0.0.3
 
--- Replaced use of `&&` operator with the `if($?)` statement.
--- Automatically opening the output.txt on succesfull completion.
+- Replaced use of `&&` operator with the `if($?)` statement.
+- Automatically opening the output.txt on succesfull completion.
+
+### 1.0.0
+- No seperate command needed for activation, it will be automatically activated when you open a cpp file.
+- No info message will be shown when you run a cpp file as it is shown for a very long time.
 
 **Enjoy!**

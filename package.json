@@ -2,7 +2,7 @@
   "name": "compile-run",
   "displayName": "Compile & Run",
   "description": "Compile and run the cpp file with a single command with taking input from input.txt and writing output to output.txt file. Best for competitive programming.",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -11,14 +11,11 @@
     "Programming Languages"
   ],
   "activationEvents": [
+    "onLanguage:cpp"
   ],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
-      {
-        "command": "compile-run.activate",
-        "title": "Compile & Run: Activate"
-      },
       {
         "command": "compile-run.compileRun",
         "title": "Compile & Run: Start"
